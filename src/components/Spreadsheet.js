@@ -7,7 +7,7 @@ const Spreadsheet = () => {
     const [value, setValue] = useState(
         [{
             1: {
-                A1: "1",
+                A1: "",
                 B1: "",
                 C1: "",
                 D1: "",
@@ -36,7 +36,7 @@ const Spreadsheet = () => {
 
             4: {
                 A4: "",
-                B4: 3,
+                B4: "",
                 C4: "",
                 D4: "",
                 E4: "",
@@ -56,32 +56,29 @@ const Spreadsheet = () => {
 
         }])
 
-    const handleChange = (e, number, key) => {
-        setValue([...value], value[0][number][key] = e.target.value)
-        console.log(value)
+    const handleChange = (e, number, currentKey) => {
+        const allKeys = value[0]
+        for (var key in value[0]) {
+            for (var key2 in value[0][key]) {
+                if (e.target.value.includes(key2)) {
+                    console.log("yes")
+                    return setValue([...value], value[0][number][currentKey] = 1 + 1)
+                }
+            }
+        }
+
+
+
+        console.log("no")
+        setValue([...value], value[0][number][currentKey] = e.target.value)
     }
-
-
-
-
-    // console.log(newData)
-    // setValue(newData)
-
-
-
-    const sum = (e) => {
-
-    }
-
-
 
 
     return (
-        // <div>{handleChange()}</div>
         <Table bordered >
             <thead >
                 <tr>
-                    {header.map((h) => (<th>{h}</th>))}
+                    {header.map((h, idx) => (<th key={idx}>{h}</th>))}
                 </tr>
             </thead>
             <tbody >
@@ -94,7 +91,6 @@ const Spreadsheet = () => {
                             Object.entries(cell[number]).map((val) => (
 
                                 < td >
-                                    {console.log(val)}
                                     <input className="input"
                                         value={val[1]}
                                         name={number}
