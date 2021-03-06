@@ -64,42 +64,68 @@ const Spreadsheet = () => {
 
     // }, [value])
 
-    const getInfo = () => {
-        // for (let i = 1; i < 5; i++) {
-        //     Object.entries(value[0][i]).map((cell) => {
-        //         return cell;
-        //     })
-        // }
-    }
-    let sum = 0;
+    const sumOfCells = (e, number, currentKey) => {
+        let separateWords = input.split((/[=\+]+/))
+        let sum = 0;
+        for (let i = 1; i <= column.length; i++) {
+            Object.entries(value[0][i]).map((cell) => {
+                if (separateWords.includes(cell[0])) {
+                    try {
+                        let valores = Number(cell[1])
+                        separateWords.map((v) => v === cell[0] ? sum += valores : "")
+                        console.log(sum)
+                        setValue([...value], value[0][number][currentKey] = sum)
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }
 
-    const handleKeyPress = async (e, number, currentKey) => {
+
+            })
+        }
+
+    }
+
+    const substractionOfCells = (e, number, currentKey) => {
+        let separateWords = input.split((/[=\-]+/))
+        let substraction = 0;
+        for (let i = 1; i <= column.length; i++) {
+            Object.entries(value[0][i]).map((cell) => {
+                if (separateWords.includes(cell[0])) {
+                    try {
+                        let valores = Number(cell[1])
+                        console.log(valores)
+                        separateWords.map((v) => v === cell[0] ? substraction === 0 ? substraction = valores : substraction -= valores : "")
+                        console.log(substraction)
+                        setValue([...value], value[0][number][currentKey] = substraction)
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }
+            })
+
+        }
+
+    }
+
+    const handleKeyPress = (e, number, currentKey) => {
 
         if (e.key === "Enter" || e.key == "Tab") {
-            if (input.includes("=") && input.includes("+")) {
-                let separateWords = input.split((/[=\+]+/))
-                for (let i = 1; i < 5; i++) {
-                    Object.entries(value[0][i]).map(async (cell) => {
-                        if (separateWords.includes(cell[0])) {
-                            let valores = Number(cell[1])
-                            separateWords.map((v) => v === cell[0] ? sum += valores : "")
-                            console.log(sum)
-                            setValue([...value], value[0][number][currentKey] = sum)
-                        }
-
-
-
-
-                    })
+            if (input.includes("=")) {
+                if (input.includes("+")) {
+                    sumOfCells(e, number, currentKey)
+                }
+                if (input.includes("-")) {
+                    substractionOfCells(e, number, currentKey)
                 }
             }
             else {
                 setInput("")
             }
-
-
         }
     }
+
+
 
     const handleChange = (e, number, currentKey) => {
 
