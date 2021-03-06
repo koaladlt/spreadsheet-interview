@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table'
 
 const Spreadsheet = () => {
@@ -56,21 +56,31 @@ const Spreadsheet = () => {
 
         }])
 
+    // useEffect(() => {
+    //     getInfo()
+    // }, [value])
+
+    const getInfo = () => {
+        // for (let i = 1; i < 5; i++) {
+        //     Object.entries(value[0][i]).map((cell) => {
+        //         return cell;
+        //     })
+        // }
+    }
+
     const handleChange = (e, number, currentKey) => {
-        const allKeys = value[0]
-        for (var key in value[0]) {
-            for (var key2 in value[0][key]) {
-                if (e.target.value.includes(key2)) {
-                    console.log("yes")
-                    return setValue([...value], value[0][number][currentKey] = 1 + 1)
-                }
+        setValue([...value], value[0][number][currentKey] = e.target.value)
+
+        if (e.target.value.includes("+")) {
+            for (let i = 1; i < 5; i++) {
+                Object.entries(value[0][i]).map((cell) => {
+                    if (e.target.value === `+${cell[0]}`) {
+                        console.log("aca")
+                        setValue([...value], value[0][number][currentKey] = cell[1])
+                    }
+                })
             }
         }
-
-
-
-        console.log("no")
-        setValue([...value], value[0][number][currentKey] = e.target.value)
     }
 
 
