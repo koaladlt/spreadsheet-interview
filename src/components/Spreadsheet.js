@@ -3,6 +3,8 @@ import Table from 'react-bootstrap/Table'
 import Header from './Header'
 
 
+
+
 const Spreadsheet = () => {
 
     const [column, setColumn] = useState([1, 2, 3, 4, 5])
@@ -63,29 +65,18 @@ const Spreadsheet = () => {
         console.log(separateWords)
         let sum = 0;
 
-        if (!separateWords.some(isNaN)) {
-            console.log("aca")
-            separateWords.map((v) => sum += +v)
-            return setValue([...value], value[0][number][currentKey] = sum)
+        for (let i = 1; i <= column.length; i++) {
+            Object.entries(value[0][i]).map((cell) => {
+                if (separateWords.includes(cell[0])) {
+                    let valores = Number(cell[1])
+                    separateWords.map((v) => cell[0] === v ? sum += valores : "")
+                }
+            })
         }
-
-        else {
-            for (let i = 1; i <= column.length; i++) {
-                Object.entries(value[0][i]).map((cell) => {
-                    try {
-                        let valores = Number(cell[1])
-                        separateWords.map((v) => (v === cell[0] ? sum += valores : ""))
-                        console.log(sum)
-                        setValue([...value], value[0][number][currentKey] = sum)
-                    } catch (error) {
-                        console.log(error)
-                    }
-                })
-            }
-        }
-
-
-
+        separateWords.map((v) => {
+            return /^[0-9]+$/.test(v) ? sum += +v : ""
+        })
+        setValue([...value], value[0][number][currentKey] = sum)
 
     }
 
@@ -94,39 +85,34 @@ const Spreadsheet = () => {
         console.log(separateWords)
         let substraction = 0;
 
+        for (let i = 0; i < separateWords.length; i++) {
+            for (let j = 1; j <= column.length; j++) {
+                Object.entries(value[0][j]).map((cell) => {
+                    if (separateWords[i] === cell[0]) {
+                        try {
+                            let cellValues = Number(cell[1])
+                            substraction === 0 ? substraction = cellValues : substraction -= cellValues
 
-        if (!separateWords.every(isNaN)) {
-            separateWords.map((v) => substraction === 0 ? substraction = v : substraction -= v)
-            setValue([...value], value[0][number][currentKey] = substraction)
-        }
-
-        else {
-            for (let i = 0; i < separateWords.length; i++) {
-                for (let j = 1; j <= column.length; j++) {
-                    Object.entries(value[0][j]).map((cell) => {
-                        if (separateWords[i] === cell[0]) {
-                            try {
-                                let cellValues = Number(cell[1])
-                                substraction === 0 ? substraction = cellValues : substraction -= cellValues
-                                return setValue([...value], value[0][number][currentKey] = substraction)
-                            } catch (error) {
-                                console.log(error)
-                            }
+                        } catch (error) {
+                            console.log(error)
                         }
+                    }
 
-                    })
+                })
 
-                }
             }
         }
+        separateWords.map((v) => {
+            return /^[0-9]+$/.test(v) ? substraction === 0 ? substraction = v : substraction -= v : ""
+        })
 
-
+        return setValue([...value], value[0][number][currentKey] = substraction)
 
     }
 
     const handleKeyPress = (e, number, currentKey) => {
 
-        if (e.key === "Enter" || e.key === "Tab") {
+        if (e.key === "Enter") {
             if (input.includes("=")) {
                 if (input.includes("+")) {
                     sumOfCells(e, number, currentKey)
@@ -145,39 +131,41 @@ const Spreadsheet = () => {
 
     const handleChange = (e, number, currentKey) => {
         setValue([...value], value[0][number][currentKey] = e.target.value)
-        setInput(e.target.value)
+        setInput(e.target.value.toUpperCase())
     }
 
 
     return (
-        <Table bordered >
-            <Header />
-            <tbody >
+        <>
+            <Table bordered >
+                <Header />
+                <tbody >
 
-                {column.map((number, idx) => (
-                    <tr key={idx} >
-                        <td style={{ backgroundColor: '#E8EAED' }}>{number}</td>
-                        {value.map((cell) => (
-                            Object.entries(cell[number]).map((val) => (
-                                < td   >
-                                    <input className="input"
-                                        value={val[1]}
-                                        name={number}
-                                        onChange={(e) => handleChange(e, number, val[0])}
-                                        onKeyPress={(e) => handleKeyPress(e, number, val[0])}
+                    {column.map((number, idx) => (
+                        <tr key={idx} >
+                            <td style={{ backgroundColor: '#E8EAED' }}>{number}</td>
+                            {value.map((cell) => (
+                                Object.entries(cell[number]).map((val) => (
+                                    < td   >
+                                        <input className="input"
+                                            value={val[1]}
+                                            name={number}
+                                            onChange={(e) => handleChange(e, number, val[0])}
+                                            onKeyPress={(e) => handleKeyPress(e, number, val[0])}
 
-                                    />
+                                        />
 
-                                </td>
+                                    </td>
 
-                            )
-                            )))}
-                    </tr>
+                                )
+                                )))}
+                        </tr>
 
-                )
-                )}
-            </tbody>
-        </Table >
+                    )
+                    )}
+                </tbody>
+            </Table >
+        </>
     )
 }
 
