@@ -58,7 +58,7 @@ const Spreadsheet = () => {
 
     }])
 
-    const sumOfCells = (e, number, currentKey) => {
+    const sumOfCells = (number, currentKey) => {
         let separateWords = input.substr(1).split((/[=\+]+/))
         console.log(separateWords)
         let sum = 0;
@@ -89,7 +89,7 @@ const Spreadsheet = () => {
 
     }
 
-    const substractionOfCells = (e, number, currentKey) => {
+    const substractionOfCells = (number, currentKey) => {
         let separateWords = input.substr(1).split((/[=\-]+/))
         console.log(separateWords)
         let substraction = 0;
@@ -155,10 +155,10 @@ const Spreadsheet = () => {
             <tbody >
 
                 {column.map((number, idx) => (
-                    <tr key={idx}>
-                        <td>{number}</td>
-                        {value.map((cell, idx1) => (
-                            Object.entries(cell[number]).map((val, idx2) => (
+                    <tr key={idx} >
+                        <td style={{ backgroundColor: '#E8EAED' }}>{number}</td>
+                        {value.map((cell) => (
+                            Object.entries(cell[number]).map((val) => (
                                 < td   >
                                     <input className="input"
                                         value={val[1]}

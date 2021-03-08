@@ -4,7 +4,7 @@ const Header = () => {
     const [header] = useState(["#", "A", "B", "C", "D", "E", "F"]);
 
     return (
-        <thead >
+        <thead style={{ backgroundColor: '#E8EAED' }}>
             <tr>
                 {header.map((h, idx) => (<th key={idx}>{h}</th>))}
             </tr>
