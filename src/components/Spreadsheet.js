@@ -58,7 +58,7 @@ const Spreadsheet = () => {
 
     }])
 
-    const sumOfCells = (number, currentKey) => {
+    const sumOfCells = (e, number, currentKey) => {
         let separateWords = input.substr(1).split((/[=\+]+/))
         console.log(separateWords)
         let sum = 0;
@@ -89,7 +89,7 @@ const Spreadsheet = () => {
 
     }
 
-    const substractionOfCells = (number, currentKey) => {
+    const substractionOfCells = (e, number, currentKey) => {
         let separateWords = input.substr(1).split((/[=\-]+/))
         console.log(separateWords)
         let substraction = 0;
