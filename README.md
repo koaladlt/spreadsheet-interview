@@ -1,5 +1,3 @@
-# Getting Started with Create React App
-
 This is a simple Spreadsheet that I build for a interview.
 
 ## Available Formulas
