@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAAA,OACI,YAAa,CACZ,WAAY,CACb,UAAW,CACX,WAAY,CACZ,oBACJ","file":"main.3f11a0e8.chunk.css","sourcesContent":[".input {\n    outline: none; \n     border: none;\n    width: 100%; \n    height: 100%; \n    display: inline-block\n}\n"]}

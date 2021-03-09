@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/spreadsheet-interview/static/css/main.3f11a0e8.chunk.css",
+    "main.js": "/spreadsheet-interview/static/js/main.60369467.chunk.js",
+    "main.js.map": "/spreadsheet-interview/static/js/main.60369467.chunk.js.map",
+    "runtime-main.js": "/spreadsheet-interview/static/js/runtime-main.1c081f78.js",
+    "runtime-main.js.map": "/spreadsheet-interview/static/js/runtime-main.1c081f78.js.map",
+    "static/css/2.150d169a.chunk.css": "/spreadsheet-interview/static/css/2.150d169a.chunk.css",
+    "static/js/2.0ad34e62.chunk.js": "/spreadsheet-interview/static/js/2.0ad34e62.chunk.js",
+    "static/js/2.0ad34e62.chunk.js.map": "/spreadsheet-interview/static/js/2.0ad34e62.chunk.js.map",
+    "static/js/3.e7b1910c.chunk.js": "/spreadsheet-interview/static/js/3.e7b1910c.chunk.js",
+    "static/js/3.e7b1910c.chunk.js.map": "/spreadsheet-interview/static/js/3.e7b1910c.chunk.js.map",
+    "index.html": "/spreadsheet-interview/index.html",
+    "static/css/2.150d169a.chunk.css.map": "/spreadsheet-interview/static/css/2.150d169a.chunk.css.map",
+    "static/css/main.3f11a0e8.chunk.css.map": "/spreadsheet-interview/static/css/main.3f11a0e8.chunk.css.map",
+    "static/js/2.0ad34e62.chunk.js.LICENSE.txt": "/spreadsheet-interview/static/js/2.0ad34e62.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1c081f78.js",
+    "static/css/2.150d169a.chunk.css",
+    "static/js/2.0ad34e62.chunk.js",
+    "static/css/main.3f11a0e8.chunk.css",
+    "static/js/main.60369467.chunk.js"
+  ]
+}
