@@ -56,7 +56,6 @@ const Cell = ({ column, number, idx }) => {
     }
 
     const handleKeyPress = (e, number, currentKey) => {
-
         if (e.key === "Enter") {
             if (input.includes("=")) {
                 if (input.includes("+")) {
